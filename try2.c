@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int vvod(int* n) {
 	printf("Введите число: \n");
@@ -38,20 +39,23 @@ int work2(int n, int s, int i, int k) {
 }
 
 int main() {
-	int n,i,s,k;
-	vvod(&n);
-	s = 1;
-	i = 0;
-	k = 1;
-	if ((n >= -1)&&(n<=1)) {
-		printf("Ответ: %d\n", n);
-	}
-	else {
-		if (n < 0) {
-			work1(n,s,i,k);
+	int n,i,s,k,e;
+	for (e = -100; e <= 100; e++) {
+		n = e;
+		s = 1;
+		i = 0;
+		k = 1;
+		printf ("%g ", pow(abs(e), (1.0/3.0)));
+		if ((n >= -1)&&(n<=1)) {
+			printf("Ответ: %d\n", n);
 		}
 		else {
-			work2(n,s,i,k);
+			if (n < 0) {
+				work1(n,s,i,k);
+			}
+			else {
+				work2(n,s,i,k);
+			}
 		}
 	}
 	
