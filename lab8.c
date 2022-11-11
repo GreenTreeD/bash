@@ -35,3 +35,4 @@ int main()
 {	printf("Точность: %g\n", PREC);
 	Solution();
 	Table();}
+	
