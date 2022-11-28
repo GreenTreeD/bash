@@ -27,9 +27,12 @@ struct node * Add(struct node *current, char * info) {
 
 struct node * Delete(struct node *current){
     struct node *previous;
-    previous = current->next;
-    free(current);
-    return previous;
+    if (current->next != NULL) {
+        previous = current->next;
+        free(current->info);
+        free(current);
+        return previous;
+    }    
 }
 
 void Read(struct node * start) {
@@ -42,6 +45,8 @@ void Read(struct node * start) {
 }
 
 int main() {
+
+
     struct node *start;
     start = malloc(sizeof(struct node));
     start->info = "start";
@@ -50,16 +55,18 @@ int main() {
     int i;
 
     while ((c = getchar()) != EOF) {
-        if (isalpha(c)) {
-            buff[i++] = c;
+        if (c != ' ' && c != '\n') {
+            if (isalpha(c)) {
+                buff[i++] = c;
+            }
         }
         else {
+            if (i != 0) {
             buff[i]='\0';
             start = Add(start, buff);
-            i = 0;
+            i = 0;}
         }
     }
-    
     Read(start);
 }
 
