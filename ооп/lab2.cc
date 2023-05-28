@@ -17,11 +17,10 @@ class Vertex {
         Vertex(int X, int Y): x(X), y(Y) { }
         int GetX() {return x;}
         int GetY() {return y;}
-        void Set(float a, float b) {x = a;y = b;}
-        friend double Distance(Vertex*, Vertex*);
+        void Set(int a, int b) {x = a;y = b;}
+        double Distance(Vertex *a) { return sqrt(sq(x-a->x)+sq(y-a->y)); };
 };
 
-double Distance(Vertex *a, Vertex *b)  { return sqrt(sq(b->x-a->x)+sq(b->y-a->y)); }
 int main(int argc, char **argv) {
 	int i = 0;
 	int j = 0;
@@ -66,14 +65,14 @@ int main(int argc, char **argv) {
 	else {
 		for(i = 0; i < countxp; i++) {
 			for(j = 0; j < countxm; j++) {
-				if (Distance(xp[i], xm[j]) > maxdist) { 
-					maxdist = Distance(xp[i], xm[j]);
+				if (xp[i]->Distance(xm[j]) > maxdist) { 
+					maxdist = xp[i]->Distance(xm[j]);
 					a = xp[i];
 					b = xm[j];
 				 }
 			}
 		}
-		printf("Point A: %d:%d\nPoint B: %d:%d\nDistance: %.3lf\n", a->GetX(), a->GetY(), b->GetX(), b->GetY(), Distance(a,b));
+		printf("Point A: %d:%d\nPoint B: %d:%d\nDistance: %.3lf\n", a->GetX(), a->GetY(), b->GetX(), b->GetY(), a->Distance(b));
 	}
 	for(i = 0; i < countxp; i++) { delete xp[i]; }
 	for(j = 0; j < countxm; j++) { delete xm[j]; }

@@ -52,18 +52,19 @@ int main(int argc, char **argv) {
     float pi = acos(-1);
     float angle = pi/6.0;
     float radius;
-    float x,y;
+    float sm = 0.0, x;
     
     Vertex mas[6];
     Vertex centre;
 
     if (argc > 2) {
         edge = atof(argv[1]);
-        sscanf(argv[2], "%f%*c%f", &x, &y);
-        centre.Set(x,y);
+        sm = atof(argv[2]);
+        sm = sm/sqrt(2.0);
+        centre.Set(-sm,-sm);
     }
     else {
-        printf("Usage: <filename> <float edge> (<float x:float y of centre>)\nNow using: edge = 1.0, centre(0,0)\n");
+        printf("Usage: <filename> <float edge> <float sm>\nNow using: edge = 1.0, centre(0,0)\n");
     }
     
     radius = edge; // так как у меня шестиугольник

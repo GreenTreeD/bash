@@ -1,0 +1,4 @@
+all:
+	g++ 16C.cc Figure.cc Alfil.cc Camel.cc -o 16C
+clean:
+	rm 16C 
