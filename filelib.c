@@ -26,7 +26,7 @@ long findinfile(FILE *p_n, char * string, long stpos) {
 	long pos = 0;
 	int flag = 0, done = 0;
 	fseek(p,0,SEEK_SET);
-	if (stpos != 0) {fseek(p,stpos+strlen(string)-1,SEEK_SET);}
+	if (stpos != 0) {fseek(p,stpos+strlen(string)+1,SEEK_SET);}
 	ch = fgetc(p);
 
 
@@ -76,8 +76,8 @@ char * formname(char * init, int mode) {
 			
 			strcat(fullstr, init);
 			strcat(fullstr, "_part1");
-			if (temp != NULL) strcat(fullstr, ".");
-			strcat(fullstr, temp);
+			if (temp != NULL){strcat(fullstr, ".");strcat(fullstr, temp);} 
+			
 			free(init);
 			break;
 			}

@@ -32,11 +32,15 @@ int main(int argc, char *argv[]) {
 		printf("Fail to open file: %s\n", mainfilename);
 		return -1;
 	}
+	if (string == NULL) {
+		printf("Fail to find separator\n");
+		return -1;
+	}
 
-	printf("separator string1 = %s\n\n", string);
+	printf("separator string = %s\n\n", string);
 
 	pos1 = findinfile(mainfile, string, 0) - 1;
-	fseek(mainfile,0,SEEK_SET);
+
 
 	if (pos1 == -3) {
 		printf("Separator not found\n");
@@ -49,8 +53,7 @@ int main(int argc, char *argv[]) {
 
 		fclose(pofile);
 
-		pos2 = findinfile(mainfile, string, pos1) - 1;
-		fseek(mainfile,0,SEEK_SET);
+		pos2 = findinfile(mainfile, string, pos1+1) - 1;
 
 		mainfilename = formname(mainfilename, 2);
 		psfile = fopen(mainfilename, "w");
